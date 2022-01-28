@@ -1,42 +1,42 @@
-# CodeIgniter 3 - PHP Simple Login System
-A user login, logout, register ready to use for CodeIgniter 3
+#CodeIgniter 3 - COVID -- CEMPE
+Tablero para la consulta y gestion de la base de datos COVID
 
-## Requirements
-- PHP 7.2 or greater
+## Requisitos
+- PHP 7.2 o superior, Plantilla SB Admin 2
 
-## Includes
-- [CodeIgniter 3.1.11](https://codeigniter.com/)
-- [SB Admin 2](https://startbootstrap.com/themes/sb-admin-2/)
+## Incluye
+- [CodeIgniter 3.1.11]
+- [Administrador de SB 2]
 
-## Installation
-1. Open `config.php` and edit your domain, and database settings.
-2. In your database server, open a SQL terminal paste this and execute:
+## Instalación
+1. Configurar el archivo `config.php` y edite su dominio y la configuración de la base de datos.
+2. Armar la base de datos con el script bd.sql
+
 ```
-DROP TABLE IF EXISTS `ci_sessions`;
-CREATE TABLE `ci_sessions` (
-    `id` varchar(128) NOT NULL,
-    `ip_address` varchar(45) NOT NULL,
-    `timestamp` int(10) UNSIGNED DEFAULT 0 NOT NULL,
-    `data` blob NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `ci_sessions_timestamp` (`timestamp`)
+CREATE TABLE `usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255),
+  `password` varchar(255),
+  `email` varchar(45),
+  `remember_token` varchar(255),
+  `created_at` int,
+  `updated_at` int,
+  `admin` varchar(45),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
 );
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `username` varchar(255) NOT NULL,
-    `password` varchar(255) NOT NULL,
-    `remember_token` varchar(255) DEFAULT NULL,
-    `created_at` int(11) NOT NULL DEFAULT 0,
-    `updated_at` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `username` (`username`)
-);
+.
+.
+.
+.
+.
+.
+
 ```
-3. Go to http://example.com/register and create a user account
+3. El proyecto esta sobre mi local, para ingresar al dashboard vaya a http://localhost/register y cree una cuenta de usuario.
 
-## Usage
-It is just a starter for user login logout register functionalities.
+## Uso
+Es solo un comienzo para las funcionalidades de registro de cierre de sesión de usuario.
+Se iran añadiendo mas funcionalidades....
 
-We do not recommend you use this, this is only a example and maybe not safe.
