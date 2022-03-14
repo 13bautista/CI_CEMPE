@@ -53,6 +53,7 @@ class Home extends CI_Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         //Cards
         $countRegistroCartera = $this->Bd_model->getCountRegistroCartera();
         $countOfAdjudicacion = $this->Bd_model->getCountOfAdjudicacion();
@@ -115,6 +116,15 @@ class Home extends CI_Controller
             'dproveedores' => json_encode($datosProveedores),
             'marcas' => json_encode($marcas),
         ];
+=======
+        $data = [
+            'page' => [
+                'title' => 'Homepages',
+            ],
+            'user' => (array) $this->_user,
+        ];
+
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
         $this->load->view('home', $data);
     }
 
@@ -133,6 +143,7 @@ class Home extends CI_Controller
 
     public function opc1()
     {
+<<<<<<< HEAD
         $draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
         $length = intval($this->input->get("length"));
@@ -208,6 +219,13 @@ class Home extends CI_Controller
                 $r->ALERTA_MP2,
                 $r->OBSERVACIONES_MP2,
             );
+=======
+        $record = $this->Users_model->barChart();
+
+        foreach ($record as $row) {
+            $data['label'][] = $row->month_name;
+            $data['data'][] = (int) $row->count;
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
         }
 
         $data = [
@@ -215,9 +233,15 @@ class Home extends CI_Controller
                 'title' => 'Opcion 1',
             ],
             'user' => (array) $this->_user,
+<<<<<<< HEAD
             'tabla' => json_encode($datos),
         ];
         $this->load->view('opc1', $data,json_encode($datos));
+=======
+            'chart_data' => json_encode($data),
+        ];
+        $this->load->view('opc1', $data);
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
     }
 
     public function opc2()
@@ -233,11 +257,20 @@ class Home extends CI_Controller
 
     public function opc3()
     {
+<<<<<<< HEAD
+=======
+        $record = $this->Bd_model->getCountRegistroCartera();
+
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
         $data = [
             'page' => [
                 'title' => 'Opcion 3',
             ],
             'user' => (array) $this->_user,
+<<<<<<< HEAD
+=======
+            'countRegistroCartera'=>$record,
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
         ];
         $this->load->view('opc3', $data);
     }
@@ -263,4 +296,8 @@ class Home extends CI_Controller
         ];
         $this->load->view('opc5', $data);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181

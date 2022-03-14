@@ -17,11 +17,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link href="<?=site_url('public/vendor/fontawesome-free/css/font-awesome-animation.min.css');?>" rel="stylesheet"
         type="text/css">
 
+<<<<<<< HEAD
     <!-- Custom styles for this template-->
     <link href="<?=site_url('public/css/sbadmin2.css');?>" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+=======
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <!-- link href="<?=site_url('public/css/sb-admin-2.min.css');?>" rel="stylesheet"-->
+    <link href="<?=site_url('public/css/sbadmin2.css');?>" rel="stylesheet">
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
 
 </head>
 
@@ -115,11 +125,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
 
         </ul>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
+<<<<<<< HEAD
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -256,6 +271,107 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                 </div>
                 <!-- /.container-fluid -->
+=======
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?=($user['username'] ?? 'Guest');?></span>
+                                <img class="img-profile rounded-circle" src="<?=site_url('public/img/perfilf2.svg');?>">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<?=site_url('logout');?>" data-toggle="modal"
+                                    data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <!--h1 class="h3 mb-4 text-gray-800"><?=($page['title'] ?? 'Undefined');?></h1-->
+
+                    <?php if ($this->session->flashdata('success_message')): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?=$this->session->flashdata('success_message');?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php elseif ($this->session->flashdata('error_message')): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?=$this->session->flashdata('error_message');?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php else: ?>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Hola, <?=($user['username'] ?? 'Guest');?>.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php endif;?>
+                </div>
+                <!-- /.container-fluid -->
+
+
+
+                <!-- Pie Chart -->
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-8" style="">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header d-flex flex-row align-items-center justify-content-center">
+                                <h6 class="m-0 font-weight-bold text-primary">Ejemplo de Barras</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-area pt-4 pb-2">
+                                    <canvas id="bar-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
 
             </div>
             <!-- End of Main Content -->
@@ -301,6 +417,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
     </div>
 
+<<<<<<< HEAD
 
     <!-- Modal -->
     <div class="modal show" id="myModal" tabindex="-1">
@@ -315,6 +432,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <script src="<?=site_url('public/vendor/jquery/jquery.min.js');?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
     </script>
+=======
+    <!-- Bootstrap core JavaScript-->
+    <script src="<?=site_url('public/vendor/jquery/jquery.min.js');?>"></script>
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
     <script src="<?=site_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 
     <!-- Core plugin JavaScript-->
@@ -324,6 +445,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <script src="<?=site_url('public/js/sb-admin-2.min.js');?>"></script>
 
     <!-- Page level plugins -->
+<<<<<<< HEAD
     <script src="public/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
@@ -333,6 +455,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </script>
     <script src="public/js/demo/datatables-demo.js"></script>
     <script src="public/js/demo/fixedColumns.js"></script>
+=======
+    <script src="<?=site_url('public/vendor/chart.js/Chart.min.js');?>"></script>
+
+    <!-- Page level custom scripts -->
+
+    <!-- Datos Charts -->
+    <script type="text/javascript">
+    var cData = JSON.parse('<?php echo $chart_data; ?>');
+    </script>
+    <script src="<?=site_url('public/js/demo/chart-usuario.js');?>"></script>
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
 
 </body>
 

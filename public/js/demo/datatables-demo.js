@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 $('#myModal').modal('show');
 $(document).ready(function () {
@@ -37,3 +38,9 @@ $(document).ready(function () {
     autoWidth: true,
   });
 });
+=======
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable').DataTable();
+});
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181

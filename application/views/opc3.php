@@ -228,7 +228,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Registro en Cartera</div>
                                             <div class="h5 mb-0 font-weight-bold">
+<<<<<<< HEAD
                                                 $40,000
+=======
+                                                <?=$countRegistroCartera?>
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
                                             </div>
                                         </div>
                                         <div class="col-auto">

@@ -11,11 +11,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class Bd_model extends CI_Model
 {
+<<<<<<< HEAD
 
     public $table = "bd";
     public $id = 'id';
     public $orderAsc = 'ASC';
     public $orderDesc = 'DESC';
+=======
+    /**
+     * The table used in this model
+     *
+     * @var array
+     */
+    private $_table = [
+        'bd',
+    ];
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
 
     /**
      * Construct functions
@@ -31,6 +42,7 @@ class Bd_model extends CI_Model
         $this->load->database();
     }
 
+<<<<<<< HEAD
     // get all
     public function get_all()
     {
@@ -38,11 +50,21 @@ class Bd_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+=======
+    /**
+     * Get user by specific data
+     *
+     * @param array $data
+     * @param bool  $first Get only the first data
+     * @param object
+     */
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
     public function getCountRegistroCartera()
     {
         $this->db->distinct();
         $this->db->select('NUM_REGISTRO_CARTERA');
         $this->db->where("NUM_REGISTRO_CARTERA NOT IN ('','NA','NO APLICA')");
+<<<<<<< HEAD
         $query = $this->db->get($this->table);
         return $query->num_rows();
     }
@@ -178,4 +200,10 @@ class Bd_model extends CI_Model
         return $record;
     }
 
+=======
+        $query = $this->db->get('bd');
+        return $query->num_rows();
+    }
+
+>>>>>>> a83247bca92426a321f315a3a7db53731a151181
 }
