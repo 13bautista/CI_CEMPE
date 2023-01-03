@@ -63,3 +63,9 @@ $route['opc2'] = 'home/opc2';
 $route['opc3'] = 'home/opc3';
 $route['opc4'] = 'home/opc4';
 $route['opc5'] = 'home/opc5';
+
+
+$route['registrocartera'] = 'dashboard/registroCartera';
+$route['oficioadjudicacion'] = 'dashboard/oficioAdjudicacion';
+$route['contrato'] = 'dashboard/contrato';
+$route['ordensuministro'] = 'dashboard/ordenSuministro';

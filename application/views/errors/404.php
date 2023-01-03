@@ -10,16 +10,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><?=($page['title'] ?? 'Undefined');?></title>
+    <title><?= ($page['title'] ?? 'Undefined'); ?></title>
 
     <!-- Custom fonts for this template-->
-    <link href="<?=site_url('public/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
-    <link href="<?=site_url('public/vendor/fontawesome-free/css/font-awesome-animation.min.css');?>" rel="stylesheet"
-        type="text/css">
+    <link href="<?= site_url('public/vendor/fontawesome/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?= site_url('public/vendor/fontawesome/css/font-awesome-animation.min.css'); ?>" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <!-- link href="<?=site_url('public/css/sb-admin-2.min.css');?>" rel="stylesheet"-->
-    <link href="<?=site_url('public/css/sbadmin2.css');?>" rel="stylesheet">
+    <link href="<?= site_url('public/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
 
 </head>
 
@@ -42,7 +40,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class=" error mx-auto" data-text="404">404</div>
                         <p class="lead text-gray-800 mb-5">Pagina no encontrada</p>
                         <p class="text-gray-500 mb-4">Parece que encontraste una falla en la matrix...</p>
-                        <a href="<?=site_url('home');?>">&larr; Volver al Dashboard</a>
+                        <a href="<?= site_url('home'); ?>">&larr; Volver al Dashboard</a>
                     </div>
 
                 </div>
@@ -73,8 +71,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -93,14 +90,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= site_url('public/vendor/jquery/jquery.min.js'); ?>"></script>
+    <script src="<?= site_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= site_url('public/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="<?= site_url('public/js/sb-admin-2.min.js'); ?>"></script>
 
 </body>
 

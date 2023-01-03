@@ -1,622 +1,1164 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+$this->load->view('templates/header');
+$this->load->view('templates/sidebar');
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div class="container-fluid flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-0">Dashboard</h4>
+        <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </div>
+        <div class="row">
 
-    <title><?=($page['title'] ?? 'Undefined');?></title>
-
-    <!-- Custom fonts for this template-->
-    <link href="<?=site_url('public/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
-    <link href="<?=site_url('public/vendor/fontawesome-free/css/font-awesome-animation.min.css');?>" rel="stylesheet"
-        type="text/css">
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <!-- link href="<?=site_url('public/css/sb-admin-2.min.css');?>" rel="stylesheet"-->
-    <link href="<?=site_url('public/css/sbadmin2.css');?>" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=site_url();?>">
-                <div class="sidebar-brand-icon rotate-n-15 ">
-                    <i class="fa fa-ambulance faa-wrench animated-hover " aria-hidden="true"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">CEMPE</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Navegaación
-            </div>
-
-            <!-- Nav Item - Homepages -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url();?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Principal</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Homepages -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url('opc1');?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Opcion 1</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Homepages -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url('opc2');?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Opcion 2</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Homepages -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url('opc3');?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Opcion 3</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Homepages -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url('opc4');?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Opcion 4</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Homepages -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url('opc5');?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Opcion 5</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Logout -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?=site_url('logout');?>" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-fw fa-sign-out-alt"></i>
-                    <span>Salir</span>
-                </a>
-            </li>
-
-            <br>
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?=($user['username'] ?? 'Guest');?></span>
-                                <img class="img-profile rounded-circle" src="<?=site_url('public/img/perfilf2.svg');?>">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?=site_url('logout');?>" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <h2 class="mb-2"> 256 </h2>
+                                        <p class="text-muted mb-0"><span class="badge badge-primary">Revenue</span> Today</p>
+                                    </div>
+                                    <div class="lnr lnr-leaf display-4 text-primary"></div>
+                                </div>
                             </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <!--h1 class="h3 mb-4 text-gray-800"><?=($page['title'] ?? 'Undefined');?></h1-->
-
-                    <?php if ($this->session->flashdata('success_message')): ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <?=$this->session->flashdata('success_message');?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
-                    <?php elseif ($this->session->flashdata('error_message')): ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <?=$this->session->flashdata('error_message');?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <h2 class="mb-2">8451</h2>
+                                        <p class="text-muted mb-0"><span class="badge badge-success">20%</span> Stock</p>
+                                    </div>
+                                    <div class="lnr lnr-chart-bars display-4 text-success"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <?php else: ?>
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        Hola, <?=($user['username'] ?? 'Guest');?>.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <h2 class="mb-2"> 31% <small></small></h2>
+                                        <p class="text-muted mb-0">New <span class="badge badge-danger">20%</span> Customer</p>
+                                    </div>
+                                    <div class="lnr lnr-rocket display-4 text-danger"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <?php endif;?>
-                </div>
-                <!-- /.container-fluid -->
-
-
-
-
-
-
-
-
-
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tablero</h1>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <h2 class="mb-2">158</h2>
+                                        <p class="text-muted mb-0"><span class="badge badge-warning">$143.45</span> Profit</p>
+                                    </div>
+                                    <div class="lnr lnr-cart display-4 text-warning"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Registro en Cartera</div>
-                                            <div class="h5 mb-0 font-weight-bold">
-<<<<<<< HEAD
-                                                $40,000
-=======
-                                                <?=$countRegistroCartera?>
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
+                    <div class="col-sm-12">
+                        <div class="card d-flex w-100 mb-4">
+                            <div class="row no-gutters row-bordered row-border-light h-100">
+                                <div class="d-flex col-md-6 align-items-center">
+                                    <div class="card-body">
+                                        <div class="row align-items-center mb-3">
+                                            <div class="col-auto">
+                                                <i class="lnr lnr-users text-primary display-4"></i>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-0 text-muted">Unique <span class="text-primary">Visitors</span></h6>
+                                                <h4 class="mt-3 mb-0">652<i class="ion ion-md-arrow-round-down ml-3 text-danger"></i></h4>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <!-- i class="fas fa-calendar fa-2x text-gray-300"></i -->
-                                            <i class="fas fa-briefcase fa-2x text-primary"></i>
-
+                                        <p class="mb-0 text-muted">36% From Last 6 Months</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-md-6 align-items-center">
+                                    <div class="card-body">
+                                        <div class="row align-items-center mb-3">
+                                            <div class="col-auto">
+                                                <i class="lnr lnr-magic-wand text-primary display-4"></i>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-0 text-muted">Monthly <span class="text-primary">Earnings</span></h6>
+                                                <h4 class="mt-3 mb-0">5963<i class="ion ion-md-arrow-round-up ml-3 text-success"></i></h4>
+                                            </div>
                                         </div>
+                                        <p class="mb-0 text-muted">36% From Last 6 Months</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gary-300"></i>
-                                        </div>
-                                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="card mb-4">
+                    <div class="card-header with-elements">
+                        <h6 class="card-header-title mb-0">Statistics</h6>
+                        <div class="card-header-elements ml-auto">
+                            <label class="text m-0">
+                                <span class="text-light text-tiny font-weight-semibold align-middle">SHOW STATS</span>
+                                <span class="switcher switcher-primary switcher-sm d-inline-block align-middle mr-0 ml-2"><input type="checkbox" class="switcher-input" checked=""><span class="switcher-indicator"><span class="switcher-yes"></span><span class="switcher-no"></span></span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="statistics-chart-1" style="height: 300px; position: relative;">
+                            <div dir="ltr" class="resize-sensor" style="pointer-events: none; position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden; max-width: 100%;">
+                                <div class="resize-sensor-expand" style="pointer-events: none; position: absolute; left: 0px; top: 0px; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden; max-width: 100%;">
+                                    <div style="position: absolute; left: 0; top: 0; transition: 0s;"></div>
+                                </div>
+                                <div class="resize-sensor-shrink" style="pointer-events: none; position: absolute; left: 0px; top: 0px; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden; max-width: 100%;">
+                                    <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
                                 </div>
                             </div>
+                            <div style="width: 100%; height: 100%; position: relative; left: 0.078125px; top: 0.25px;"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="group" style="width: 100%; height: 100%; overflow: visible;">
+                                    <desc>JavaScript chart by amCharts</desc>
+                                    <defs>
+                                        <clipPath id="id-27">
+                                            <rect width="869" height="300"></rect>
+                                        </clipPath>
+                                        <linearGradient id="gradient-id-50" x1="1%" x2="99%" y1="59%" y2="41%">
+                                            <stop stop-color="#474758" offset="0"></stop>
+                                            <stop stop-color="#474758" stop-opacity="1" offset="0.75"></stop>
+                                            <stop stop-color="#3cabff" stop-opacity="1" offset="0.755"></stop>
+                                        </linearGradient>
+                                        <filter id="filter-id-56" width="200%" height="200%" x="-50%" y="-50%"></filter>
+                                        <filter id="filter-id-75" width="200%" height="200%" x="-50%" y="-50%"></filter>
+                                        <clipPath id="id-110">
+                                            <path d="M0,0 L794,0 L794,232 L0,232 L0,0"></path>
+                                        </clipPath>
+                                        <clipPath id="id-127">
+                                            <path d="M0,0 L794,0 L794,232 L0,232 L0,0"></path>
+                                        </clipPath>
+                                        <clipPath id="id-326">
+                                            <rect width="794" height="232"></rect>
+                                        </clipPath>
+                                        <filter id="filter-id-29" width="200%" height="200%" x="-50%" y="-50%">
+                                            <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="1.5"></feGaussianBlur>
+                                            <feOffset result="offsetBlur" dx="1" dy="1"></feOffset>
+                                            <feFlood flood-color="#000000" flood-opacity="0.5"></feFlood>
+                                            <feComposite in2="offsetBlur" operator="in"></feComposite>
+                                            <feMerge>
+                                                <feMergeNode></feMergeNode>
+                                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                                            </feMerge>
+                                        </filter>
+                                        <filter id="filter-id-47" width="120%" height="120%" x="-10%" y="-10%">
+                                            <feColorMatrix type="saturate" values="0"></feColorMatrix>
+                                        </filter>
+                                        <filter id="filter-id-112" width="200%" height="200%" x="-50%" y="-50%">
+                                            <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="1.5"></feGaussianBlur>
+                                            <feOffset result="offsetBlur" dx="1" dy="1"></feOffset>
+                                            <feFlood flood-color="#000000" flood-opacity="0.5"></feFlood>
+                                            <feComposite in2="offsetBlur" operator="in"></feComposite>
+                                            <feMerge>
+                                                <feMergeNode></feMergeNode>
+                                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                                            </feMerge>
+                                        </filter>
+                                        <filter id="filter-id-129" width="200%" height="200%" x="-50%" y="-50%">
+                                            <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="1.5"></feGaussianBlur>
+                                            <feOffset result="offsetBlur" dx="1" dy="1"></feOffset>
+                                            <feFlood flood-color="#000000" flood-opacity="0.5"></feFlood>
+                                            <feComposite in2="offsetBlur" operator="in"></feComposite>
+                                            <feMerge>
+                                                <feMergeNode></feMergeNode>
+                                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                                            </feMerge>
+                                        </filter>
+                                        <filter id="filter-id-122" width="200%" height="200%" x="-50%" y="-50%">
+                                            <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="8"></feGaussianBlur>
+                                            <feOffset result="offsetBlur" dx="1" dy="15"></feOffset>
+                                            <feFlood flood-color="#ff4a00" flood-opacity="0.5"></feFlood>
+                                            <feComposite in2="offsetBlur" operator="in"></feComposite>
+                                            <feMerge>
+                                                <feMergeNode></feMergeNode>
+                                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                                            </feMerge>
+                                        </filter>
+                                        <filter id="filter-id-128" width="200%" height="200%" x="-50%" y="-50%">
+                                            <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="8"></feGaussianBlur>
+                                            <feOffset result="offsetBlur" dx="1" dy="15"></feOffset>
+                                            <feFlood flood-color="#ff4a00" flood-opacity="0.5"></feFlood>
+                                            <feComposite in2="offsetBlur" operator="in"></feComposite>
+                                            <feMerge>
+                                                <feMergeNode></feMergeNode>
+                                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    <g>
+                                        <g fill="#ffffff" fill-opacity="0">
+                                            <rect width="869" height="300"></rect>
+                                        </g>
+                                        <g>
+                                            <g role="region" clip-path="url(#id-27)" opacity="1" aria-label="Chart">
+                                                <g transform="translate(15,15)">
+                                                    <g>
+                                                        <g>
+                                                            <g>
+                                                                <g>
+                                                                    <g>
+                                                                        <g>
+                                                                            <g style="touch-action: none; user-select: none; -webkit-user-drag: none;" transform="translate(45,0)">
+                                                                                <g fill="#ffffff" fill-opacity="0">
+                                                                                    <rect width="794" height="232"></rect>
+                                                                                </g>
+                                                                                <g>
+                                                                                    <g>
+                                                                                        <g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,348)" display="none">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,348)" display="none">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;" display="none">
+                                                                                                <path d="M0,232 L0,232 L794,232 L794,232 L0,232"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,290)" display="none">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,290)" display="none">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;">
+                                                                                                <path d="M0,232 L0,232 L794,232 L794,232 L0,232"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,232)">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,232)">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;" display="none">
+                                                                                                <path d="M0,174 L0,232 L794,232 L794,174 L0,174"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,174)">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,174)">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;">
+                                                                                                <path d="M0,116 L0,174 L794,174 L794,116 L0,116"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,116)">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,116)">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;" display="none">
+                                                                                                <path d="M0,58 L0,116 L794,116 L794,58 L0,58"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,58)">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,58)">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;">
+                                                                                                <path d="M0,0 L0,58 L794,58 L794,0 L0,0"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;" display="none">
+                                                                                                <path d="M0,0 L0,0 L794,0 L794,0 L0,0"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(0,-58)" display="none">
+                                                                                                <path d=" M0,0  L-5,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(0,-58)" display="none">
+                                                                                                <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" style="pointer-events: none;">
+                                                                                                <path d="M0,0 L0,0 L794,0 L794,0 L0,0"></path>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                    <g>
+                                                                                        <g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(56.715419999999995,232)">
+                                                                                                <path d=" M0,0  L0,5 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0" fill="none" transform="translate(56.715419999999995,0)">
+                                                                                                <path d=" M0,0  L0,232 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" opacity="0" style="pointer-events: none;" display="none">
+                                                                                                <path d="M0,0 L0,232 L226.85374000000002,232 L226.85374000000002,0 L0,0"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" display="none" transform="translate(850.7154199999999,232)">
+                                                                                                <path d=" M0,0  L0,5 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0" fill="none" display="none" transform="translate(850.7154199999999,0)">
+                                                                                                <path d=" M0,0  L0,232 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" opacity="1" style="pointer-events: none;">
+                                                                                                <path d="M794,0 L794,232 L794,232 L794,0 L794,0"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(283.56916,232)">
+                                                                                                <path d=" M0,0  L0,5 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0" fill="none" transform="translate(283.56916,0)">
+                                                                                                <path d=" M0,0  L0,232 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" opacity="1" style="pointer-events: none;">
+                                                                                                <path d="M226.85374000000002,0 L226.85374000000002,232 L453.71542,232 L453.71542,0 L226.85374000000002,0"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(510.43084,232)">
+                                                                                                <path d=" M0,0  L0,5 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0" fill="none" transform="translate(510.43084,0)">
+                                                                                                <path d=" M0,0  L0,232 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" opacity="0" style="pointer-events: none;" display="none">
+                                                                                                <path d="M453.71542,0 L453.71542,232 L680.56916,232 L680.56916,0 L453.71542,0"></path>
+                                                                                            </g>
+                                                                                            <g fill-opacity="0" stroke-opacity="0" stroke="#000000" stroke-width="1" transform="translate(737.28458,232)">
+                                                                                                <path d=" M0,0  L0,5 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0" fill="none" transform="translate(737.28458,0)">
+                                                                                                <path d=" M0,0  L0,232 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" fill-opacity="0" opacity="1" style="pointer-events: none;">
+                                                                                                <path d="M680.56916,0 L680.56916,232 L794,232 L794,0 L680.56916,0"></path>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                    <g>
+                                                                                        <g>
+                                                                                            <g role="group" stroke-opacity="1" fill-opacity="0" fill="#c4c2c3" stroke="#c4c2c3" aria-label="iphone" stroke-width="4" stroke-dasharray="10" id="id-105">
+                                                                                                <g>
+                                                                                                    <g clip-path="url(#id-110)">
+                                                                                                        <g>
+                                                                                                            <g>
+                                                                                                                <g>
+                                                                                                                    <g fill="#c4c2c3" fill-opacity="0" stroke="#c4c2c3" stroke-opacity="1" stroke-width="4" stroke-dasharray="10" style="pointer-events: none;">
+                                                                                                                        <g>
+                                                                                                                            <g stroke-opacity="0">
+                                                                                                                                <path></path>
+                                                                                                                            </g>
+                                                                                                                            <g fill-opacity="0">
+                                                                                                                                <path d=" M56.5154,231.8  M56.7154,232  C79.4027,231.9994 124.7732,174.0002 170.1463,174 C215.5193,173.9998 238.1961,208.8001 283.5692,208.8 C328.9422,208.7999 351.6254,162.4 397,162.4 C442.3746,162.4 465.0578,208.8 510.4308,208.8 C555.8039,208.8 578.4807,162.3999 623.8537,162.4 C669.2268,162.4001 714.5973,220.3994 737.2846,220.4"></path>
+                                                                                                                            </g>
+                                                                                                                        </g>
+                                                                                                                    </g>
+                                                                                                                </g>
+                                                                                                            </g>
+                                                                                                        </g>
+                                                                                                    </g>
+                                                                                                    <g></g>
+                                                                                                </g>
+                                                                                            </g>
+                                                                                            <g role="group" stroke-opacity="1" fill-opacity="0" fill="#ff4a00" stroke="#ff4a00" aria-label="itouch" stroke-width="4" filter="url(#filter-id-122)" id="id-122">
+                                                                                                <g>
+                                                                                                    <g clip-path="url(#id-127)">
+                                                                                                        <g>
+                                                                                                            <g>
+                                                                                                                <g>
+                                                                                                                    <g fill="#ff4a00" fill-opacity="0" stroke="#ff4a00" stroke-opacity="1" stroke-width="4" style="pointer-events: none;">
+                                                                                                                        <g>
+                                                                                                                            <g stroke-opacity="0">
+                                                                                                                                <path></path>
+                                                                                                                            </g>
+                                                                                                                            <g fill-opacity="0">
+                                                                                                                                <path d=" M56.5154,162.2  M56.7154,162.4  C79.4027,162.4006 124.7732,226.2005 170.1463,226.2 C215.5193,226.1995 238.1961,116.0006 283.5692,116 C328.9422,115.9994 351.6254,162.4008 397,162.4 C442.3746,162.3992 465.0578,34.7996 510.4308,34.8 C555.8039,34.8004 578.4807,202.9987 623.8537,203 C669.2268,203.0013 714.5973,162.4004 737.2846,162.4"></path>
+                                                                                                                            </g>
+                                                                                                                        </g>
+                                                                                                                    </g>
+                                                                                                                </g>
+                                                                                                            </g>
+                                                                                                        </g>
+                                                                                                    </g>
+                                                                                                    <g></g>
+                                                                                                </g>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                    <g clip-path="url(#id-326)">
+                                                                                        <g>
+                                                                                            <g fill="#c4c2c3" stroke="#c4c2c3">
+                                                                                                <g></g>
+                                                                                            </g>
+                                                                                            <g filter="url(#filter-id-128)" fill="#ff4a00" stroke="#ff4a00">
+                                                                                                <g></g>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                    <g>
+                                                                                        <g></g>
+                                                                                    </g>
+                                                                                    <g>
+                                                                                        <g></g>
+                                                                                    </g>
+                                                                                    <g opacity="0" style="touch-action: none; user-select: none; -webkit-user-drag: none;" visibility="hidden">
+                                                                                        <g>
+                                                                                            <g fill-opacity="0.2" fill="#000000" style="pointer-events: none;" opacity="0" visibility="hidden">
+                                                                                                <path></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" fill="none" stroke-dasharray="3,3" stroke-opacity="0.4" style="pointer-events: none;" transform="translate(22.9,0)">
+                                                                                                <path d=" M0,0  L0,232 "></path>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" fill="none" stroke-dasharray="3,3" stroke-opacity="0.4" style="pointer-events: none;" transform="translate(0,0)">
+                                                                                                <path d=" M0,0  L794,0 "></path>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                    <g role="button" focusable="true" opacity="0" visibility="hidden" transform="translate(754,-3)" aria-labelledby="id-19-title">
+                                                                                        <g fill="#6794dc" stroke="#ffffff" fill-opacity="1" stroke-opacity="0" transform="translate(0,8)">
+                                                                                            <path d="M17,0 L18,0 a17,17 0 0 1 17,17 L35,17 a17,17 0 0 1 -17,17 L17,34 a17,17 0 0 1 -17,-17 L0,17 a17,17 0 0 1 17,-17 Z"></path>
+                                                                                        </g>
+                                                                                        <g transform="translate(9,9)">
+                                                                                            <g stroke="#ffffff" style="pointer-events: none;" transform="translate(0,8)">
+                                                                                                <path d=" M0,0  L11,0 " transform="translate(2.5,7.5)"></path>
+                                                                                            </g>
+                                                                                            <g fill="#000000" style="pointer-events: none;" transform="translate(17,8)">
+                                                                                                <g display="none"></g>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                        <title id="id-19-title">Zoom Out</title>
+                                                                                    </g>
+                                                                                </g>
+                                                                            </g>
+                                                                            <g>
+                                                                                <g>
+                                                                                    <g>
+                                                                                        <g>
+                                                                                            <g fill="#000000" transform="translate(0,116) rotate(-90)">
+                                                                                                <g display="none"></g>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0.15" fill="none" transform="translate(45,232)">
+                                                                                                <path transform="translate(-0.5,-0.5)" d=" M0,0  L794,0 "></path>
+                                                                                            </g>
+                                                                                            <g transform="translate(0,0)">
+                                                                                                <g>
+                                                                                                    <g fill="#000000" fill-opacity="0" opacity="0" stroke-opacity="0" transform="translate(45,116)">
+                                                                                                        <g transform="translate(-35,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>250</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,348)" display="none">
+                                                                                                        <g transform="translate(-40,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>-100</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,290)" display="none">
+                                                                                                        <g transform="translate(-32,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>-50</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,232)">
+                                                                                                        <g transform="translate(-19,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>0</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,174)">
+                                                                                                        <g transform="translate(-27,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>50</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,116)">
+                                                                                                        <g transform="translate(-35,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>100</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,58)">
+                                                                                                        <g transform="translate(-35,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>150</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,0)">
+                                                                                                        <g transform="translate(-35,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>200</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                    <g fill="#000000" transform="translate(45,-58)" display="none">
+                                                                                                        <g transform="translate(-35,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                                <tspan>250</tspan>
+                                                                                                            </text></g>
+                                                                                                    </g>
+                                                                                                </g>
+                                                                                            </g>
+                                                                                            <g stroke="#000000" stroke-opacity="0" fill="none" style="pointer-events: none;" transform="translate(45,0)">
+                                                                                                <path d=" M0,0  L0,232 " transform="translate(-0.5,-0.5)"></path>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                </g>
+                                                                            </g>
+                                                                            <g transform="translate(839,0)">
+                                                                                <g></g>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g>
+                                                                        <g transform="translate(45,0)"></g>
+                                                                    </g>
+                                                                    <g transform="translate(0,232)">
+                                                                        <g transform="translate(45,0)">
+                                                                            <g>
+                                                                                <g>
+                                                                                    <g stroke="#000000" stroke-opacity="0" fill="none" style="pointer-events: none;">
+                                                                                        <path d=" M0,0  L794,0 " transform="translate(-0.5,-0.5)"></path>
+                                                                                    </g>
+                                                                                    <g stroke="#000000" stroke-opacity="0.15" fill="none" display="none" transform="translate(794,-232)" opacity="0" visibility="hidden">
+                                                                                        <path transform="translate(-0.5,-0.5)" d=" M0,0  L0,232 "></path>
+                                                                                    </g>
+                                                                                    <g>
+                                                                                        <g>
+                                                                                            <g fill="#000000" fill-opacity="0" opacity="0" stroke-opacity="0" transform="translate(397,0)">
+                                                                                                <g transform="translate(-4,10)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                        <tspan>L</tspan>
+                                                                                                    </text></g>
+                                                                                            </g>
+                                                                                            <g fill="#000000" transform="translate(56.715419999999995,0)">
+                                                                                                <g transform="translate(-16.5,10)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                        <tspan>2010</tspan>
+                                                                                                    </text></g>
+                                                                                            </g>
+                                                                                            <g fill="#000000" display="none" transform="translate(850.7154199999999,0)">
+                                                                                                <g transform="translate(0,10)" display="none"></g>
+                                                                                            </g>
+                                                                                            <g fill="#000000" transform="translate(283.56916,0)">
+                                                                                                <g transform="translate(-16.5,10)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                        <tspan>2012</tspan>
+                                                                                                    </text></g>
+                                                                                            </g>
+                                                                                            <g fill="#000000" transform="translate(510.43084,0)">
+                                                                                                <g transform="translate(-16.5,10)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                        <tspan>2014</tspan>
+                                                                                                    </text></g>
+                                                                                            </g>
+                                                                                            <g fill="#000000" transform="translate(737.28458,0)">
+                                                                                                <g transform="translate(-16.5,10)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                                        <tspan>2016</tspan>
+                                                                                                    </text></g>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </g>
+                                                                                    <g fill="#000000" transform="translate(397,38)">
+                                                                                        <g display="none"></g>
+                                                                                    </g>
+                                                                                </g>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <g filter="url(#filter-id-129)" role="tooltip" opacity="0" aria-describedby="id-122" transform="translate(116.7154,177.4)" visibility="hidden">
+                                                        <g fill="#ff4a00" fill-opacity="0.9" stroke-width="1" stroke-opacity="1" stroke="#ffffff" style="pointer-events: none;" transform="translate(6,-15.5)">
+                                                            <path d="M3,0 L84,0 a3,3 0 0 1 3,3 L87,28 a3,3 0 0 1 -3,3 L3,31 a3,3 0 0 1 -3,-3 L0,28 L0,20.5 L-6,15.5 L0,10.5 L0,3 a3,3 0 0 1 3,-3"></path>
+                                                        </g>
+                                                        <g>
+                                                            <g fill="#ffffff" style="pointer-events: none;" transform="translate(49.5,-15.5)">
+                                                                <g transform="translate(-31.5,7)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                        <tspan>itouch: </tspan>
+                                                                        <tspan style="font-weight:bold">60</tspan>
+                                                                    </text></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g filter="url(#filter-id-112)" role="tooltip" opacity="0" aria-describedby="id-105" transform="translate(116.7154,247)" visibility="hidden">
+                                                        <g fill="#c4c2c3" fill-opacity="0.9" stroke-width="1" stroke-opacity="1" stroke="#ffffff" style="pointer-events: none;" transform="translate(6,-30.5)">
+                                                            <path d="M3,0 L80,0 a3,3 0 0 1 3,3 L83,28 a3,3 0 0 1 -3,3 L3,31 a3,3 0 0 1 -3,-3 L0,28 L0,28 L-6,30.5 L0,18 L0,3 a3,3 0 0 1 3,-3"></path>
+                                                        </g>
+                                                        <g>
+                                                            <g fill="#000000" style="pointer-events: none;" transform="translate(47.5,-30.5)">
+                                                                <g transform="translate(-29.5,7)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                        <tspan>iphone: </tspan>
+                                                                        <tspan style="font-weight:bold">0</tspan>
+                                                                    </text></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g filter="url(#filter-id-29)" role="tooltip" visibility="hidden" opacity="0">
+                                                        <g fill="#ffffff" fill-opacity="0.9" stroke-width="1" stroke-opacity="1" stroke="#ffffff" style="pointer-events: none;" transform="translate(0,6)">
+                                                            <path d="M3,0 L3,0 L0,-6 L13,0 L21,0 a3,3 0 0 1 3,3 L24,10 a3,3 0 0 1 -3,3 L3,13 a3,3 0 0 1 -3,-3 L0,3 a3,3 0 0 1 3,-3"></path>
+                                                        </g>
+                                                        <g>
+                                                            <g fill="#ffffff" style="pointer-events: none;" transform="translate(12,6)">
+                                                                <g transform="translate(0,7)" display="none"></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g visibility="hidden" display="none" style="pointer-events: none;">
+                                                        <g fill="#ffffff" opacity="1">
+                                                            <rect width="869" height="300"></rect>
+                                                        </g>
+                                                        <g>
+                                                            <g transform="translate(434.5,150)">
+                                                                <g>
+                                                                    <g stroke-opacity="1" fill="#f3f3f3" fill-opacity="0.8">
+                                                                        <g>
+                                                                            <g>
+                                                                                <path d=" M53,0  a53,53,0,0,1,-106,0 a53,53,0,0,1,106,0 M42,0  a42,42,0,0,0,-84,0 a42,42,0,0,0,84,0 L42,0 "></path>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g stroke-opacity="1" fill="#000000" fill-opacity="0.2">
+                                                                        <g>
+                                                                            <g>
+                                                                                <path d=" M50,0  a50,50,0,0,1,-100,0 a50,50,0,0,1,100,0 M45,0  a45,45,0,0,0,-90,0 a45,45,0,0,0,90,0 L45,0 "></path>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g fill="#000000" fill-opacity="0.4">
+                                                                        <g transform="translate(-17.5,-9)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                                <tspan>100%</tspan>
+                                                                            </text></g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g opacity="0.3" aria-labelledby="id-47-title" filter="url(#filter-id-47)" style="cursor: pointer;" transform="translate(0,279)">
+                                                        <g fill="#ffffff" opacity="0">
+                                                            <rect width="66" height="21"></rect>
+                                                        </g>
+                                                        <g>
+                                                            <g shape-rendering="auto" fill="none" stroke-opacity="1" stroke-width="1.7999999999999998" stroke="#3cabff">
+                                                                <path d=" M15,15  C17.4001,15 22.7998,15.0001 27,15 C31.2002,14.9999 33.2999,6 36,6 C38.7001,6 38.6999,10.5 40.5,10.5 C42.3001,10.5 42.2999,6 45,6 C47.7001,6 50.9999,14.9999 54,15 C57.0002,15.0001 58.7999,15 60,15"></path>
+                                                            </g>
+                                                            <g shape-rendering="auto" fill="none" stroke-opacity="1" stroke-width="1.7999999999999998" stroke="url(#gradient-id-50)">
+                                                                <path d=" M6,15  C8.2501,15 9.7498,15.0001 15,15 C20.2502,14.9999 20.7748,3.6 27,3.6 C33.2252,3.6 33.8998,14.9999 39.9,15 C45.9002,15.0001 45.9748,15 51,15 C56.0252,15 57.7499,15 60,15"></path>
+                                                            </g>
+                                                        </g>
+                                                        <title id="id-47-title">Chart created using amCharts library</title>
+                                                    </g>
+                                                    <g role="tooltip" opacity="0" transform="translate(116.7154,247)" visibility="hidden">
+                                                        <g fill="#000000" fill-opacity="1" stroke-width="1" stroke-opacity="1" stroke="#000000" style="pointer-events: none;" transform="translate(-26.5,5)">
+                                                            <path d="M0,0 L21.5,0 L26.5,-5 L31.5,0 L53,0 a0,0 0 0 1 0,0 L53,28 a0,0 0 0 1 -0,0 L0,28 a0,0 0 0 1 -0,-0 L0,0 a0,0 0 0 1 0,-0"></path>
+                                                        </g>
+                                                        <g>
+                                                            <g fill="#ffffff" style="pointer-events: none;" transform="translate(0,5)">
+                                                                <g transform="translate(-16.5,5)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                        <tspan>2010</tspan>
+                                                                    </text></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g role="tooltip" opacity="0" transform="translate(60,19.8)" visibility="hidden">
+                                                        <g fill="#000000" fill-opacity="1" stroke-width="1" stroke-opacity="1" stroke="#000000" style="pointer-events: none;" transform="translate(-50,-4.8)">
+                                                            <path d="M0,0 L45,0 a0,0 0 0 1 0,0 L45,0 L45,0 L50,4.8 L45,10 L45,28 a0,0 0 0 1 -0,0 L0,28 a0,0 0 0 1 -0,-0 L0,0 a0,0 0 0 1 0,-0"></path>
+                                                        </g>
+                                                        <g>
+                                                            <g fill="#ffffff" style="pointer-events: none;" transform="translate(-27.5,-4.8)">
+                                                                <g transform="translate(-12.5,5)" style="user-select: none;"><text x="0" y="18" dy="-3.6">
+                                                                        <tspan>196</tspan>
+                                                                    </text></g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg></div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card d-flex w-100 mb-4">
+                    <div class="row no-gutters row-bordered row-border-light h-100">
+                        <div class="d-flex col-sm-6 col-md-4 col-lg-6 align-items-center">
+                            <div class="card-body media align-items-center text-dark">
+                                <i class="lnr lnr-diamond display-4 d-block text-primary"></i>
+                                <span class="media-body d-block ml-3"><span class="text-big mr-1 text-primary">$1584.78</span>
+                                    <br>
+                                    <small class="text-muted">Earned this month</small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex col-sm-6 col-md-4 col-lg-6 align-items-center">
+                            <div class="card-body media align-items-center text-dark">
+                                <i class="lnr lnr-clock display-4 d-block text-warning"></i>
+                                <span class="media-body d-block ml-3"><span class="text-big"><span class="mr-1 text-warning">152</span>Working Hours</span>
+                                    <br>
+                                    <small class="text-muted">Spent this month</small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex col-sm-6 col-md-4 col-lg-6 align-items-center">
+                            <div class="card-body media align-items-center text-dark">
+                                <i class="lnr lnr-hourglass display-4 d-block text-danger"></i>
+                                <span class="media-body d-block ml-3"><span class="text-big"><span class="mr-1 text-danger">54</span> Tasks</span>
+                                    <br>
+                                    <small class="text-muted">Completed this month</small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex col-sm-6 col-md-4 col-lg-6 align-items-center">
+                            <div class="card-body media align-items-center text-dark">
+                                <i class="lnr lnr-license display-4 d-block text-success"></i>
+                                <span class="media-body d-block ml-3"><span class="text-big"><span class="mr-1 text-success">6</span> Projects</span>
+                                    <br>
+                                    <small class="text-muted">Done this month</small>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4 bg-pattern-3 bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="lnr lnr-cart display-4"></div>
+                                    <div class="ml-3">
+                                        <div class="small">Monthly sales</div>
+                                        <div class="text-large">2362</div>
+                                    </div>
+                                </div>
+                                <div id="order-chart-1" class="mt-3 chart-shadow" style="height: 70px; padding: 0px; position: relative;"><canvas class="flot-base" width="101" height="70" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 101px; height: 70px;"></canvas><canvas class="flot-overlay" width="101" height="70" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 101px; height: 70px;"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4 bg-pattern-3-dark">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="lnr lnr-gift display-4 text-primary"></div>
+                                    <div class="ml-3">
+                                        <div class="text-muted small">Products</div>
+                                        <div class="text-large">985</div>
+                                    </div>
+                                </div>
+                                <div id="ecom-chart-3" class="mt-3 chart-shadow-primary" style="height: 70px; padding: 0px; position: relative;"><canvas class="flot-base" width="101" height="70" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 101px; height: 70px;"></canvas><canvas class="flot-overlay" width="101" height="70" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 101px; height: 70px;"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-xl-5">
+                <div class="card mb-4">
+                    <div class="card-header with-elements">
+                        <h6 class="card-header-title mb-0">Tasks</h6>
+                        <div class="card-header-elements ml-auto">
+                            <button type="button" class="btn btn-default btn-xs md-btn-flat">Show more</button>
+                        </div>
+                    </div>
+                    <div style="height: 310px" id="tasks-inner" class="ps ps--active-y">
+                        <div class="card-body">
+                            <p class="text-muted small">Today</p>
+                            <div class="custom-controls-stacked">
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label">Buy products</span>
+                                    <span class="ui-todo-badge badge badge-outline-default font-weight-normal ml-2">58 mins left</span>
+                                </label>
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label">Reply to emails</span>
+                                </label>
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label">Write blog post</span>
+                                    <span class="ui-todo-badge badge badge-outline-default font-weight-normal ml-2">20 hours left</span>
+                                </label>
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" checked="">
+                                    <span class="custom-control-label">Wash my car</span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <div class="card-body">
+                            <p class="text-muted small">Tomorrow</p>
+                            <div class="custom-controls-stacked">
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label">Buy antivirus</span>
+                                </label>
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label">Jane's Happy Birthday</span>
+                                </label>
+                                <label class="ui-todo-item custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label">Call mom</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 310px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 261px;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type your task">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7">
+                <div class="card mb-4">
+                    <div class="card-header with-elements pb-0">
+                        <h6 class="card-header-title mb-0">Customer details</h6>
+                        <div class="card-header-elements ml-auto p-0">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#sale-stats">Sale stats</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#latest-sales">Latest sales</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-tabs-top">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="sale-stats">
+                                <div style="height: 330px" id="tab-table-1" class="ps ps--active-y">
+                                    <table class="table table-hover card-table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>Due</strong></span>
+                                                    </label>
+                                                </th>
+                                                <th>User</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/3-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">John Deo</h6>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1183] Workaround for OS X selects printing bug</h6>
+                                                        <p class="text-muted mb-0">Chrome fixed the bug several versions ago, thus rendering this...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>16</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/1-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">Jems Win</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1249] Vertically center carousel controls</h6>
+                                                        <p class="text-muted mb-0">Try any carousel control and reduce the screen width below...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>40</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/1-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">Jems Wiliiam</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1254] Inaccurate small pagination height</h6>
+                                                        <p class="text-muted mb-0">The height of pagination elements is not consistent with...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/3-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">John Deo</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1183] Workaround for OS X selects printing bug</h6>
+                                                        <p class="text-muted mb-0">Chrome fixed the bug several versions ago, thus rendering this...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/3-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">John Deo</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1183] Workaround for OS X selects printing bug</h6>
+                                                        <p class="text-muted mb-0">Chrome fixed the bug several versions ago, thus rendering this...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>16</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/1-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">Jems Win</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1249] Vertically center carousel controls</h6>
+                                                        <p class="text-muted mb-0">Try any carousel control and reduce the screen width below...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>40</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/1-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">Jems Wiliiam</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1254] Inaccurate small pagination height</h6>
+                                                        <p class="text-muted mb-0">The height of pagination elements is not consistent with...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox mb-0">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mb-0">
+                                                        <img src="assets/img/avatars/3-small.png" class="d-block ui-w-40 rounded-circle" alt="">
+                                                        <div class="media-body align-self-center ml-3">
+                                                            <h6 class="mb-0">John Deo</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-block align-middle">
+                                                        <h6 class="mb-1">[#1183] Workaround for OS X selects printing bug</h6>
+                                                        <p class="text-muted mb-0">Chrome fixed the bug several versions ago, thus rendering this...</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; height: 330px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 199px;"></div>
                                     </div>
                                 </div>
+                                <a href="javascript:" class="card-footer d-block text-center text-dark small font-weight-semibold">SHOW MORE</a>
                             </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
+                            <div class="tab-pane fade" id="latest-sales">
+                                <div style="height: 330px" id="tab-table-2" class="ps">
+                                    <table class="table table-hover card-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Qty.</th>
+                                                <th>Sum.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">PlayStation 4 1TB (Jet Black)</a>
+                                                </td>
+                                                <td class="align-middle">1</td>
+                                                <td class="align-middle">$480.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">Nike Men Black Liteforce III Sneakers</a>
+                                                </td>
+                                                <td class="align-middle">2</td>
+                                                <td class="align-middle">$115.1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">Wireless headphones</a>
+                                                </td>
+                                                <td class="align-middle">1</td>
+                                                <td class="align-middle">$235.55</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">HERO ATHLETES BAG</a>
+                                                </td>
+                                                <td class="align-middle">1</td>
+                                                <td class="align-middle">$160.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">POÄNG</a>
+                                                </td>
+                                                <td class="align-middle">3</td>
+                                                <td class="align-middle">$477.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">Apple iWatch (black)</a>
+                                                </td>
+                                                <td class="align-middle">1</td>
+                                                <td class="align-middle">$399.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">WALKING 400 BLUE CAT3</a>
+                                                </td>
+                                                <td class="align-middle">2</td>
+                                                <td class="align-middle">$41.1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">Wireless headphones</a>
+                                                </td>
+                                                <td class="align-middle">1</td>
+                                                <td class="align-middle">$235.55</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">HERO ATHLETES BAG</a>
+                                                </td>
+                                                <td class="align-middle">1</td>
+                                                <td class="align-middle">$160.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <a href="javascript:" class="text-dark">POÄNG</a>
+                                                </td>
+                                                <td class="align-middle">3</td>
+                                                <td class="align-middle">$477.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
                                     </div>
                                 </div>
+                                <a href="javascript:" class="card-footer d-block text-center text-dark small font-weight-semibold">SHOW MORE</a>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="<?=site_url('public/img/solucionesapp.svg');?>">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw →</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; CEMPE</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="<?=site_url('logout');?>">Logout</a>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?=site_url('public/vendor/jquery/jquery.min.js');?>"></script>
-    <script src="<?=site_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<?=site_url('public/vendor/jquery-easing/jquery.easing.min.js');?>"></script>
+</div>
+<!-- /.container-fluid -->
 
-    <!-- Custom scripts for all pages -->
-    <script src="<?=site_url('public/js/sb-admin-2.min.js');?>"></script>
-
-    <!-- Page level plugins -->
-    <script src="<?=site_url('public/vendor/chart.js/Chart.min.js');?>"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="<?=site_url('public/js/demo/chart-area-demo.js');?>"></script>
-    <script src="<?=site_url('public/js/demo/chart-pie-demo.js');?>"></script>
-
-</body>
-
-</html>
+<?php
+$this->load->view('templates/footer');
+?>

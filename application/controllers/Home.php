@@ -53,78 +53,70 @@ class Home extends CI_Controller
      */
     public function index()
     {
-<<<<<<< HEAD
+        //Arrays
+        $datosConceptos = [];
+        $datosTipoAdq = [];
+        $datosRegCartera = [];
+
         //Cards
-        $countRegistroCartera = $this->Bd_model->getCountRegistroCartera();
-        $countOfAdjudicacion = $this->Bd_model->getCountOfAdjudicacion();
-        $countNumContrato = $this->Bd_model->getCountNumContrato();
-        $countOrdenSuministro = $this->Bd_model->getCountOrdenSuministro();
+        $numRegCartera = $this->Bd_model->getCountRegistroCartera();
+        $numOfAdjudicacion = $this->Bd_model->getCountOfAdjudicacion();
+        $numDeContratos = $this->Bd_model->getCountNumContrato();
+        $numOrdSuminsitro = $this->Bd_model->getCountOrdenSuministro();
 
-        //Charts
-        $distinctConceptos = $this->Bd_model->getConceptos();
-        foreach ($distinctConceptos as $row) {
-            $datosConceptos['label'][] = $row->concepto;
-            $datosConceptos['data'][] = $row->count;
+        //Maps
+        $maps = $this->Bd_model->getOrdenesXEstado();
+
+        //Conceptos
+        $conceptos = $this->Bd_model->getConceptos();
+
+        foreach ($conceptos as $x) {
+            $datosConceptos["label"][] = $x->concepto;
+            $datosConceptos["data"][] = $x->count;
         }
-
-        //Google Charts
-        $OSxEstados = $this->Bd_model->getOrdenesXEstado();
 
         //Donuts Charts
         $tipoAdquisicion = $this->Bd_model->getTipoAdquisicion();
-        foreach ($tipoAdquisicion as $row) {
-            $datosTipoAdq['label'][] = $row->TIPO_ADQUISICION;
-            $datosTipoAdq['data'][] = $row->COUNT;
+        foreach ($tipoAdquisicion as $x) {
+            $datosTipoAdq["label"][] = $x->tipo_adquisicion;
+            $datosTipoAdq["data"][] = $x->count;
         }
 
-        $faltanteOS = $this->Bd_model->getFaltantesOrdenes();
-        foreach ($faltanteOS as $row) {
-            $datosFaltantesOS['label'][] = $row->FALTANTE;
-            $datosFaltantesOS['data'][] = $row->COUNT;
+        $faltantesOrd = $this->Bd_model->getFaltantesOrdenes();
+        foreach ($faltantesOrd as $x) {
+            $datosOSFaltantes["label"][] = $x->faltante;
+            $datosOSFaltantes["data"][] = $x->count;
         }
 
-        $registroCartera = $this->Bd_model->getRegistroCartera();
-        foreach ($registroCartera as $row) {
-            $datosRegistroCartera['label'][] = $row->NUM_REGISTRO_CARTERA;
-            $datosRegistroCartera['data'][] = $row->TOTAL;
+        $registroCart = $this->Bd_model->getRegistroCartera();
+        foreach ($registroCart as $x) {
+            $datosRegCartera["label"][] = $x->num_reg_cartera;
+            $datosRegCartera["data"][] = $x->total;
         }
 
-        //proveedores y otros
+        //Proveedores
         $proveedores = $this->Bd_model->getProveedores();
-        foreach ($proveedores as $row) {
-            $datosProveedores['label'][] = $row->proveedor;
-            $datosProveedores['data'][] = $row->percent;
-        }
 
+        //Marcas
         $marcas = $this->Bd_model->getMarcas();
 
-        $data = [
-            'page' => [
-                'title' => 'Dashboard',
-            ],
-            'user' => (array) $this->_user,
-            'cardRC' => $countRegistroCartera,
-            'cardOA' => $countOfAdjudicacion,
-            'cardNC' => $countNumContrato,
-            'cardOS' => $countOrdenSuministro,
-            'conceptos' => json_encode($datosConceptos),
-            'OSEdos' => json_encode($OSxEstados),
-            'tipoAdq' => json_encode($datosTipoAdq),
-            'faltanteOS' => json_encode($datosFaltantesOS),
-            'regCartera' => json_encode($datosRegistroCartera),
-            'proveedores' => json_encode($proveedores),
-            'dproveedores' => json_encode($datosProveedores),
-            'marcas' => json_encode($marcas),
-        ];
-=======
         $data = [
             'page' => [
                 'title' => 'Homepages',
             ],
             'user' => (array) $this->_user,
+            'cardRC' => $numRegCartera,
+            'cardOA' => $numOfAdjudicacion,
+            'cardNC' => $numDeContratos,
+            'cardOS' => $numOrdSuminsitro,
+            'OSEdos' => json_encode($maps),
+            'conceptos' => json_encode($datosConceptos),
+            'tipoAdq' => json_encode($datosTipoAdq),
+            'faltanteOS' => json_encode($datosOSFaltantes),
+            'regCartera' => json_encode($datosRegCartera),
+            'proveedores' => json_encode($proveedores),
+            'marcas' => json_encode($marcas),
         ];
-
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
         $this->load->view('home', $data);
     }
 
@@ -143,105 +135,13 @@ class Home extends CI_Controller
 
     public function opc1()
     {
-<<<<<<< HEAD
-        $draw = intval($this->input->get("draw"));
-        $start = intval($this->input->get("start"));
-        $length = intval($this->input->get("length"));
-
-        $result = $this->Bd_model->get_all();
-        $datos = [];
-
-        foreach ($result as $r) {
-            $datos[] = array(
-                $r->ID,
-                $r->CLAVE_COMPENDIO,
-                $r->CONCEPTO,
-                $r->DESCRIPCION_OS,
-                $r->PROVEEDOR,
-                $r->PROVEEDOR_OS,
-                $r->PROVEEDOR_CORREGIDO,
-                $r->MARCA,
-                $r->MARCA_OS,
-                $r->MARCA_CORREGIDO,
-                $r->MODELO,
-                $r->MODELO_OS,
-                $r->MODELO_CORREGIDO,
-                $r->SERIE,
-                $r->SERIE_OS,
-                $r->SERIE_CORREGIDO,
-                $r->CANTIDAD,
-                $r->CLAVE_CUCOP,
-                $r->CLAVE_CABM,
-                $r->PARTIDA_PRESUPUESTAL,
-                $r->TIPO_ADQUISICION,
-                $r->NUM_REGISTRO_CARTERA,
-                $r->FECHA_REGISTRO_CARTERA,
-                $r->OFICIO_ADJUDICACION,
-                $r->FECHA_OFICIO_ADJUDICACION,
-                $r->NUM_CONTRATO,
-                $r->PRECIO_UNITARIO_SIN_IVA,
-                $r->OFICIO_SOLICITUD,
-                $r->FECHA_SOLICITUD,
-                $r->CLUES,
-                $r->ESTATUS_OPERACION,
-                $r->UNIDAD,
-                $r->ENTIDAD_FEDERATIVA,
-                $r->NOMBRE_MUNICIPIO,
-                $r->NOMBRE_JURISDICCION,
-                $r->BAJO_RESGUARDO,
-                $r->NOMBRE_INSTITUCION,
-                $r->CONTACTO_ESTATAL_UNIDAD,
-                $r->DIRECCION,
-                $r->TELEFONO,
-                $r->ORDEN_SUMINISTRO,
-                $r->OS_PDF,
-                $r->OS_CORREGIDA,
-                $r->ESTATUS,
-                $r->DISPONIBLE_ALMACEN,
-                $r->FECHA_ORDEN_SUMINISTRO,
-                $r->FECHA_EXPEDICION_OS,
-                $r->FECHA_INSTALACION,
-                $r->ACTA_ENTREGA_RECEPCION,
-                $r->ORDEN_SERVICIO_INST,
-                $r->CAPACITACION,
-                $r->ACCESORIOS,
-                $r->CONSUMIBLES,
-                $r->OBSERVACIONES,
-                $r->GARANTIA_MESES,
-                $r->FECHA_MP1,
-                $r->ORDEN_SERVICIO_MP1,
-                $r->DIAS_MP1,
-                $r->ALERTA_MP1,
-                $r->OBSERVACIONES_MP1,
-                $r->FECHA_MP2,
-                $r->ORDEN_SERVICIO_MP2,
-                $r->DIAS_MP2,
-                $r->ALERTA_MP2,
-                $r->OBSERVACIONES_MP2,
-            );
-=======
-        $record = $this->Users_model->barChart();
-
-        foreach ($record as $row) {
-            $data['label'][] = $row->month_name;
-            $data['data'][] = (int) $row->count;
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
-        }
-
         $data = [
             'page' => [
                 'title' => 'Opcion 1',
             ],
             'user' => (array) $this->_user,
-<<<<<<< HEAD
-            'tabla' => json_encode($datos),
-        ];
-        $this->load->view('opc1', $data,json_encode($datos));
-=======
-            'chart_data' => json_encode($data),
         ];
         $this->load->view('opc1', $data);
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
     }
 
     public function opc2()
@@ -257,20 +157,11 @@ class Home extends CI_Controller
 
     public function opc3()
     {
-<<<<<<< HEAD
-=======
-        $record = $this->Bd_model->getCountRegistroCartera();
-
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
         $data = [
             'page' => [
                 'title' => 'Opcion 3',
             ],
             'user' => (array) $this->_user,
-<<<<<<< HEAD
-=======
-            'countRegistroCartera'=>$record,
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
         ];
         $this->load->view('opc3', $data);
     }
@@ -296,8 +187,34 @@ class Home extends CI_Controller
         ];
         $this->load->view('opc5', $data);
     }
-<<<<<<< HEAD
+
+    public function getDataTable()
+    {
+        $json = array();
+        $list = $this->Bd_model->get_bd();
+        $data = array();
+
+        foreach ($list as $r) {
+            $data[] = array(
+                $r->ID,
+                $r->CLAVE_COMPENDIO,
+                $r->CONCEPTO,       
+                $r->PROVEEDOR,
+                $r->MARCA,
+                $r->MODELO,
+                $r->SERIE,
+                $r->NUM_REGISTRO_CARTERA,
+                $r->OFICIO_ADJUDICACION,
+                $r->ORDEN_SUMINISTRO,
+            );
+        }
+        $json['data'] = array(
+            "draw" => 1,
+            "recordsTotal" => $this->Bd_model->countAll(),
+            "recordsFiltered" => $this->Bd_model->countFiltered(),
+            "data" => $data,
+        );
+        $this->output->set_header('Content-Type: application/json');
+        echo json_encode($json['data']);
+    }
 }
-=======
-}
->>>>>>> a83247bca92426a321f315a3a7db53731a151181

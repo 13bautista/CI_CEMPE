@@ -1,15 +1,32 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Users Model Class
+ *
+ * @package     CodeIgniter Simple Login
+ * @subpackage  Models
+ * @category    Bd
+ * @link        https://github.com/inibah97
+ */
 class Bd_model extends CI_Model
 {
+
+    /**
+     * Construct functions
+     *
+     * @return void
+     */
     public function __construct()
     {
+        // Load the parent construct
         parent::__construct();
+
+        // Load the database libraries
         $this->load->database();
     }
 
-    public $table = "base";
+    public $table = "bd";
     public $id = 'id';
     public $orderAsc = 'ASC';
     public $orderDesc = 'DESC';
@@ -18,6 +35,7 @@ class Bd_model extends CI_Model
     private $_compendio;
     private $_concepto;
     private $_proveedor;
+    private $_descripcion;
     private $_marca;
     private $_modelo;
     private $_serie;
@@ -78,6 +96,10 @@ class Bd_model extends CI_Model
     public function setProveedor($proveedor)
     {
         $this->_proveedor = $proveedor;
+    }
+    public function setDescripcion($descripcion)
+    {
+        $this->_descripcion = $descripcion;
     }
     public function setMarca($marca)
     {
@@ -261,10 +283,11 @@ class Bd_model extends CI_Model
         $data = array(
             'clave_compendio' => $this->_compendio,
             'concepto' => $this->_concepto,
-            'proveedor' => $this->_proveedor,
-            'marca' => $this->_marca,
-            'modelo' => $this->_modelo,
-            'serie' => $this->_serie,
+            'proveedor_corregido' => $this->_proveedor,
+            'descripcion_os' => $this->_descripcion,
+            'marca_corregido' => $this->_marca,
+            'modelo_corregido' => $this->_modelo,
+            'serie_corregido' => $this->_serie,
             'precio_unitario_sin_iva' => $this->_preciounitario,
             'clave_cucop' => $this->_cucop,
             'clave_cabm' => $this->_cabm,
@@ -316,10 +339,11 @@ class Bd_model extends CI_Model
         $data = array(
             'clave_compendio' => $this->_compendio,
             'concepto' => $this->_concepto,
-            'proveedor' => $this->_proveedor,
-            'marca' => $this->_marca,
-            'modelo' => $this->_modelo,
-            'serie' => $this->_serie,
+            'proveedor_corregido' => $this->_proveedor,
+            'descripcion_os' => $this->_descripcion,
+            'marca_corregido' => $this->_marca,
+            'modelo_corregido' => $this->_modelo,
+            'serie_corregido' => $this->_serie,
             'precio_unitario_sin_iva' => $this->_preciounitario,
             'clave_cucop' => $this->_cucop,
             'clave_cabm' => $this->_cabm,
@@ -368,11 +392,11 @@ class Bd_model extends CI_Model
     public function getBase()
     {
         $this->db->select(array(
-            's.ID', 's.CLAVE_COMPENDIO', 's.CONCEPTO', 's.PROVEEDOR', 's.MARCA',
-            's.MODELO', 's.SERIE', 's.CLAVE_CUCOP', 's.CLAVE_CABM', 's.PARTIDA_PRESUPUESTAL', 's.TIPO_ADQUISICION', 's.NUM_REGISTRO_CARTERA',
+            's.ID', 's.CLAVE_COMPENDIO', 's.CONCEPTO', 's.DESCRIPCION_OS', 's.PROVEEDOR_CORREGIDO', 's.MARCA_CORREGIDO',
+            's.MODELO_CORREGIDO', 's.SERIE_CORREGIDO', 's.CLAVE_CUCOP', 's.CLAVE_CABM', 's.PARTIDA_PRESUPUESTAL', 's.TIPO_ADQUISICION', 's.NUM_REGISTRO_CARTERA',
             's.FECHA_REGISTRO_CARTERA', 's.OFICIO_ADJUDICACION', 's.FECHA_OFICIO_ADJUDICACION', 's.NUM_CONTRATO', 's.PRECIO_UNITARIO_SIN_IVA',
             's.OFICIO_SOLICITUD', 's.FECHA_SOLICITUD', 's.CLUES', 's.ESTATUS_OPERACION', 's.UNIDAD', 's.ENTIDAD_FEDERATIVA', 's.CLAVE_MUNICIPIO',
-            's.NOMBRE_JURISDICCION', 's.BAJO_RESGUARDO', 's.NOMBRE_INSTITUCION', 's.CONTACTO_ESTATAL_UNIDAD', 's.DIRECCION', 's.TELEFONO', 's.ORDEN_SUMINISTRO',
+            's.NOMBRE_JURISDICCION', 's.BAJO_RESGUARDO', 's.NOMBRE_INSTITUCION', 's.CONTACTO_ESTATAL_UNIDAD', 's.DIRECCION', 's.TELEFONO', 's.OS_CORREGIDA',
             's.ESTATUS', 's.DISPONIBLE_ALMACEN', 's.FECHA_ORDEN_SUMINISTRO', 's.FECHA_INSTALACION', 's.ACTA_ENTREGA_RECEPCION',
             's.ORDEN_SERVICIO_INST', 's.CAPACITACION', 's.ACCESORIOS', 's.CONSUMIBLES', 's.OBSERVACIONES', 's.GARANTIA_MESES', 's.FECHA_MP1', 's.ORDEN_SERVICIO_MP1',
             's.DIAS_MP1', 's.ALERTA_MP1', 's.OBSERVACIONES_MP1', 's.FECHA_MP2', 's.ORDEN_SERVICIO_MP2', 's.DIAS_MP2', 's.ALERTA_MP2', 's.OBSERVACIONES_MP2'
@@ -410,7 +434,8 @@ class Bd_model extends CI_Model
 
     public function get_bd()
     {
-        $this->db->select("ID, CLAVE_COMPENDIO, CONCEPTO, PROVEEDOR, MARCA, MODELO, SERIE, NUM_REGISTRO_CARTERA, OFICIO_ADJUDICACION, ORDEN_SUMINISTRO");
+        $this->db->select("ID, CLAVE_COMPENDIO, CONCEPTO, PROVEEDOR_CORREGIDO, MARCA_CORREGIDO, MODELO_CORREGIDO,
+                        SERIE_CORREGIDO, NUM_REGISTRO_CARTERA, OFICIO_ADJUDICACION, OS_CORREGIDA");
         $this->db->order_by($this->id, $this->orderDesc);
         return $this->db->get($this->table)->result();
     }
@@ -445,8 +470,8 @@ class Bd_model extends CI_Model
     public function getCountOrdenSuministro()
     {
         $this->db->distinct();
-        $this->db->select('ORDEN_SUMINISTRO');
-        $this->db->where("ORDEN_SUMINISTRO NOT IN ('','NA','NO APLICA')");
+        $this->db->select('OS_CORREGIDA');
+        $this->db->where("OS_CORREGIDA NOT IN ('','NA','NO APLICA')");
         $query = $this->db->get($this->table);
         return $query->num_rows();
     }
@@ -455,8 +480,8 @@ class Bd_model extends CI_Model
 
     public function getOrdenesXEstado()
     {
-        $this->db->select('ENTIDAD_FEDERATIVA, COUNT(DISTINCT ORDEN_SUMINISTRO) AS COUNT');
-        $this->db->where("ORDEN_SUMINISTRO <> '' AND ENTIDAD_FEDERATIVA NOT IN ('', 'IMSS BIENESTAR','NO APLICA')");
+        $this->db->select('ENTIDAD_FEDERATIVA, COUNT(DISTINCT OS_CORREGIDA) AS COUNT');
+        $this->db->where("OS_CORREGIDA <> '' AND ENTIDAD_FEDERATIVA NOT IN ('', 'IMSS BIENESTAR','NO APLICA')");
         $this->db->group_by('ENTIDAD_FEDERATIVA');
         $query = $this->db->get($this->table);
         $record = $query->result();
@@ -467,9 +492,9 @@ class Bd_model extends CI_Model
 
     public function getConceptos()
     {
-        $this->db->select('COUNT(1) AS count, CONCEPTO AS concepto');
-        $this->db->where("CONCEPTO IS NOT NULL AND CONCEPTO NOT IN ('','NA','NO APLICA')");
-        $this->db->group_by('CONCEPTO');
+        $this->db->select('COUNT(1) AS count, IFNULL(CONCEPTO,UPPER(DESCRIPCION_OS)) AS concepto');
+        $this->db->where("IFNULL(CONCEPTO,UPPER(DESCRIPCION_OS)) IS NOT NULL AND IFNULL(CONCEPTO,UPPER(DESCRIPCION_OS)) NOT IN ('','NA','NO APLICA')");
+        $this->db->group_by('IFNULL(CONCEPTO,UPPER(DESCRIPCION_OS))');
         $this->db->order_by(1, $this->orderDesc);
         $query = $this->db->get($this->table, 10);
         $record = $query->result();
@@ -492,21 +517,21 @@ class Bd_model extends CI_Model
     /* * * * * INFORMATION FROM DONUTS CHARTS * * * * */
     public function getFaltantesOrdenes()
     {
-        $this->db->select("'SIN CONTRATO' AS faltante,COUNT(DISTINCT ORDEN_SUMINISTRO) AS count");
+        $this->db->select("'SIN CONTRATO' AS faltante,COUNT(DISTINCT OS_CORREGIDA) AS count");
         $this->db->from($this->table);
-        $this->db->where("ORDEN_SUMINISTRO <> '' AND NUM_CONTRATO='' ");
+        $this->db->where("OS_CORREGIDA <> '' AND NUM_CONTRATO='' ");
         $query1 = $this->db->get_compiled_select();
-        $this->db->select("'SIN OFICIO DE ADJUDICACION', COUNT(DISTINCT ORDEN_SUMINISTRO)");
+        $this->db->select("'SIN OFICIO DE ADJUDICACION', COUNT(DISTINCT OS_CORREGIDA)");
         $this->db->from($this->table);
-        $this->db->where("ORDEN_SUMINISTRO <> '' AND OFICIO_ADJUDICACION='' ");
+        $this->db->where("OS_CORREGIDA <> '' AND OFICIO_ADJUDICACION='' ");
         $query2 = $this->db->get_compiled_select();
-        $this->db->select("'SIN PARTIDA PRESUPUESTAL', COUNT(DISTINCT ORDEN_SUMINISTRO)");
+        $this->db->select("'SIN PARTIDA PRESUPUESTAL', COUNT(DISTINCT OS_CORREGIDA)");
         $this->db->from($this->table);
-        $this->db->where("ORDEN_SUMINISTRO <> '' AND PARTIDA_PRESUPUESTAL='' ");
+        $this->db->where("OS_CORREGIDA <> '' AND PARTIDA_PRESUPUESTAL='' ");
         $query3 = $this->db->get_compiled_select();
-        $this->db->select("'SIN REGISTRO EN CARTERA',COUNT(DISTINCT ORDEN_SUMINISTRO)");
+        $this->db->select("'SIN REGISTRO EN CARTERA',COUNT(DISTINCT OS_CORREGIDA)");
         $this->db->from($this->table);
-        $this->db->where("ORDEN_SUMINISTRO <> '' AND NUM_REGISTRO_CARTERA='' ");
+        $this->db->where("OS_CORREGIDA <> '' AND NUM_REGISTRO_CARTERA='' ");
         $query4 = $this->db->get_compiled_select();
 
         $query = $this->db->query($query1 . ' UNION ALL ' . $query2 . ' UNION ALL ' . $query3 . ' UNION ALL ' . $query4);
@@ -528,12 +553,12 @@ class Bd_model extends CI_Model
 
     public function getProveedores()
     {
-        $str = "SELECT T1.PROVEEDOR as proveedor, T1.total, ROUND((T1.TOTAL *100)/T2.TOTAL,2) as percent FROM "
-            . "(SELECT PROVEEDOR, COUNT(1) AS TOTAL "
-            . "FROM BASE "
-            . "WHERE PROVEEDOR <> '' "
-            . "GROUP BY PROVEEDOR) T1 "
-            . "CROSS JOIN (SELECT COUNT(1) AS TOTAL FROM BASE) T2 "
+        $str = "SELECT T1.PROVEEDOR_CORREGIDO as proveedor, T1.total, ROUND((T1.TOTAL *100)/T2.TOTAL,2) as percent FROM "
+            . "(SELECT PROVEEDOR_CORREGIDO, COUNT(1) AS TOTAL "
+            . "FROM BD "
+            . "WHERE PROVEEDOR_CORREGIDO <> '' "
+            . "GROUP BY PROVEEDOR_CORREGIDO) T1 "
+            . "CROSS JOIN (SELECT COUNT(1) AS TOTAL FROM BD) T2 "
             . "ORDER BY 3 DESC LIMIT 10";
         $query = $this->db->query($str);
         $record = $query->result();
@@ -542,12 +567,12 @@ class Bd_model extends CI_Model
 
     public function getMarcas()
     {
-        $str = "SELECT T1.MARCA as marca, T1.total, ROUND((T1.TOTAL *100)/T2.TOTAL,2) as percent FROM "
-            . "(SELECT MARCA, COUNT(1) AS TOTAL "
-            . "FROM BASE "
-            . "WHERE MARCA <> '' "
-            . "GROUP BY MARCA) T1 "
-            . "CROSS JOIN (SELECT COUNT(1) AS TOTAL FROM BASE) T2 "
+        $str = "SELECT T1.MARCA_CORREGIDO as marca, T1.total, ROUND((T1.TOTAL *100)/T2.TOTAL,2) as percent FROM "
+            . "(SELECT MARCA_CORREGIDO, COUNT(1) AS TOTAL "
+            . "FROM BD "
+            . "WHERE MARCA_CORREGIDO <> '' "
+            . "GROUP BY MARCA_CORREGIDO) T1 "
+            . "CROSS JOIN (SELECT COUNT(1) AS TOTAL FROM BD) T2 "
             . "ORDER BY 3 DESC LIMIT 10";
         $query = $this->db->query($str);
         $record = $query->result();
@@ -556,6 +581,7 @@ class Bd_model extends CI_Model
 
     public function debug_to_console($data, $context = 'Debug in Console')
     {
+
         ob_start();
         $output  = 'console.info(\'' . $context . ':\');';
         $output .= 'console.log(' . json_encode($data) . ');';
