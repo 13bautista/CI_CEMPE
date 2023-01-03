@@ -48,15 +48,12 @@ $(function () {
 
     //options
     var options = {
+        maintainAspectRatio: false,
         responsive: true,
         title: {
             display: true,
             position: "top",
-<<<<<<< HEAD
             text: "Conteo de Conceptos por registros",
-=======
-            text: "Conteo de Usuarios registrados por Mes",
->>>>>>> a83247bca92426a321f315a3a7db53731a151181
             fontSize: 18,
             fontColor: "#111"
         },

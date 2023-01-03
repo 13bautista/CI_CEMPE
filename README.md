@@ -1,4 +1,5 @@
-# CEMPE
+#CodeIgniter 3 - COVID -- CEMPE
+
 Tablero para la consulta y gestion de la base de datos COVID 19 . CEMPE 2022
 
 ## Requisitos
@@ -6,17 +7,26 @@ Tablero para la consulta y gestion de la base de datos COVID 19 . CEMPE 2022
 
 ## Incluye
 - [CodeIgniter 3.1.11]
-- [Plantilla SB Admin 2] v4.0.7]
-- [Bootstrap v4.3.1]
-- [Chart.js v2.8.0]
-- [DataTables 1.10.19]
-- [Font Awesome Free 5.10.2]
-- [jQuery v3.4.1]
+- [Plantilla SB Admin 2] v4.0.7
+-  Bootstrap v4.3.1
+-  Chart.js v2.8.0
+-  DataTables 1.10.19
+-  Font Awesome Free 5.10.2 
+-  jQuery v3.4.1
+
+
+Tablero para la consulta y gestion de la base de datos COVID
+
+## Requisitos
+- PHP 7.2 o superior, Plantilla SB Admin 2
+
+## Incluye
+- [CodeIgniter 3.1.11]
+- [Administrador de SB 2]
 
 ## Instalación
 1. Configurar el archivo `config.php` y edite su dominio y la configuración de la base de datos.
 2. Armar la base de datos con el script bd.sql
-
 
 ```
 CREATE TABLE `usuario` (
@@ -34,10 +44,11 @@ CREATE TABLE `usuario` (
 .
 .
 .
-```
+.
 
-3. El proyecto esta configurado como local, para ingresar al dashboard -->  http://localhost/CI_CEMPE/register
-y crea una cuenta de usuario.
+```
+3. El proyecto esta sobre mi local, para ingresar al dashboard vaya a http://localhost/register y cree una cuenta de usuario.
 
 ## Uso
-Es solo un comienzo pero se iran añadiendo mas funcionalidades...
+Es solo un comienzo para las funcionalidades de registro de cierre de sesión de usuario.
+Se iran añadiendo mas funcionalidades....
