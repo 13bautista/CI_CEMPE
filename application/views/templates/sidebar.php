@@ -52,22 +52,6 @@
             </a>
         </li>
 
-        <!-- Nav Item - Homepages -->
-        <li class="nav-item">
-            <a class="nav-link pb-0" href="<?= site_url('opc4'); ?>">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Opcion 4</span>
-            </a>
-        </li>
-
-        <!-- Nav Item - Homepages -->
-        <li class="nav-item">
-            <a class="nav-link pb-0" href="<?= site_url('opc5'); ?>">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Opcion 5</span>
-            </a>
-        </li>
-
         <!-- Nav Item - Logout -->
         <li class="nav-item">
             <a class="nav-link pb-0" href="<?= site_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">

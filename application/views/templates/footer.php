@@ -5,7 +5,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; CEMPE</span>
+            <span>Copyright &copy; CEMPE by SABS (13bautista@gmail.com) </span>
         </div>
     </div>
 </footer>

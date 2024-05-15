@@ -10,7 +10,7 @@ var myPieChart = new Chart(ctx, {
     labels: dataFaltantesOS.label,
     datasets: [{
       data: dataFaltantesOS.data,
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#e96186', '#4ed7df', '#e38150', '#ddd346', ''],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#e96186', '#4ed7df', '#e38150', '#ddd346'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#d73c66', '#25bdc6', '#d46832', '#d2c723'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],

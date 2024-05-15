@@ -21,7 +21,7 @@ $this->load->view('templates/sidebar');
                 </a>
             </div>
             <div class="card-body">
-                <table id="dataTable" class="table table-hover" style="width:100%">
+                <table id="dataTable" class="table table-hover table-borderless" style="width:100%">
                     <thead>
                         <tr id="filters">
                             <th>ID</th>

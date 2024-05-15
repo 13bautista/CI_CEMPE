@@ -166,21 +166,41 @@ $this->load->view('templates/sidebar');
     </div>
 
 
+    <!-- Google Charts -->
+    <!--div class="row">
+        <!-- Map Card -->
+    <!--div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4" style="height: 55rem;">
+                <!-- Card Header - Dropdown -->
+    <!--div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Mapa de Ordenes de Suministro</h6>
+                </div>
+                <!-- Card Body -->
+    <!--div class="card-body d-flex justify-content-center" style="background-color: #C5E3FF;"-->
+    <!--div class="card-body row h-100 justify-content-center align-items-center">
+                    <div class="row h-100 justify-content-center align-items-center" id="regions_div" style="height: 30rem"></div>
+                    <!--div id="regions_div"></div-->
+    <!--/div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Google Charts -->
     <div class="row">
         <!-- Map Card -->
         <div class="col-xl-12 col-lg-12">
-            <div class="card shadow mb-4" style="height: 36rem;">
+            <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Mapa de Ordenes de Suministro</h6>
                 </div>
+                <div id="map" class="container h-100 d-flex justify-content-center"></div>
+                <!--div id="map" class="w-50 ml-0 mr-0 mx-auto text-center"></div-->
                 <!-- Card Body -->
-                <div class="card-body">
-                    <div class="row h-100 justify-content-center align-items-center" id="regions_div" style="height: 30rem;"></div>
-                </div>
+                <!--div class="card-body d-flex justify-content-center">
+                    <div id="map"></div>
+                </div-->
             </div>
         </div>
     </div>
@@ -278,6 +298,8 @@ $this->load->view('templates/footer');
 <script type="text/javascript">
     var dataOSEdos = JSON.parse('<?php echo $OSEdos; ?>');
 </script>
+<script src="<?= site_url('public/js/mapdata.js'); ?>"></script>
+<script src="<?= site_url('public/js/countrymap.js'); ?>"></script>
 <script src="<?= site_url('public/js/loader.js'); ?>"></script>
 <script src="<?= site_url('public/js/googleChats.js'); ?>"></script>
 
