@@ -1,4 +1,4 @@
-#COVID 19  CEMPE #
+#COVID 19  CEMPE
 
 ![](https://github.com/13bautista/CI_CEMPE/raw/master/Screens/Screen%202024-01-01.png)
 
@@ -43,12 +43,8 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 );
-.
-.
-.
-.
-
 ```
+
 3. El proyecto esta sobre mi local, para ingresar al dashboard vaya a http://localhost/register y cree una cuenta de usuario.
 
 ## Uso
