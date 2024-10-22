@@ -1,6 +1,6 @@
 #CodeIgniter 3 - COVID -- CEMPE
 
-<span>https://raw.githubusercontent.com/13bautista/CI_CEMPE/Screens/ImagenV1.png</span>
+<span>https://github.com/13bautista/CI_CEMPE/blob/master/Screens/Screen%202024-01-01.png</span>
 
 Tablero para la consulta y gestion de la base de datos COVID 19 . CEMPE 2022
 
