@@ -1,6 +1,6 @@
 #COVID 19  CEMPE #
 
-![Logo de mi proyecto]([https://github.com/tuusuario/tu-repositorio/raw/main/ruta/a/la/imagen.png])
+([https://github.com/13bautista/CI_CEMPE/blob/master/Screens/Screen%202024-01-01.png])
 
 Tablero para la consulta y gestion de la base de datos COVID 19 . CEMPE 2022
 
